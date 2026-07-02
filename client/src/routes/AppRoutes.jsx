@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Dashboard from "../pages/dashboard/Dashboard";
 import Fields from "../pages/fields/Fields";
@@ -13,6 +13,8 @@ import Settings from "../pages/settings/Settings";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 
+import ProtectedRoute from "../components/auth/ProtectedRoute";
+
 function AppRoutes() {
   return (
     <BrowserRouter>
@@ -21,16 +23,93 @@ function AppRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {/* Dashboard */}
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/fields" element={<Fields />} />
-        <Route path="/crops" element={<Crops />} />
-        <Route path="/weather" element={<Weather />} />
-        <Route path="/soil" element={<Soil />} />
-        <Route path="/assistant" element={<Assistant />} />
-        <Route path="/reports" element={<Reports />} />
-        <Route path="/notifications" element={<Notifications />} />
-        <Route path="/settings" element={<Settings />} />
+        {/* Redirect root to dashboard */}
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+
+        {/* Protected Routes */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/fields"
+          element={
+            <ProtectedRoute>
+              <Fields />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/crops"
+          element={
+            <ProtectedRoute>
+              <Crops />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/weather"
+          element={
+            <ProtectedRoute>
+              <Weather />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/soil"
+          element={
+            <ProtectedRoute>
+              <Soil />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/assistant"
+          element={
+            <ProtectedRoute>
+              <Assistant />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/reports"
+          element={
+            <ProtectedRoute>
+              <Reports />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/notifications"
+          element={
+            <ProtectedRoute>
+              <Notifications />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/settings"
+          element={
+            <ProtectedRoute>
+              <Settings />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Unknown Route */}
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </BrowserRouter>
   );

@@ -3,16 +3,38 @@ import Navbar from "./Navbar";
 
 function MainLayout({ children }) {
   return (
-    <div className="min-h-screen flex bg-[#081C15] text-white">
+    <div className="min-h-screen bg-[#081510] text-white">
+
+      {/* Sidebar */}
+
       <Sidebar />
 
-      <div className="flex-1 flex flex-col">
-        <Navbar />
+      {/* Main Content */}
 
-        <main className="flex-1 p-6">
-          {children}
+      <div className="ml-[280px] min-h-screen">
+
+        {/* Navbar */}
+
+        <div className="sticky top-0 z-40 border-b border-[#1D3B2F] bg-[#0C1F18]/90 backdrop-blur-xl">
+
+          <Navbar />
+
+        </div>
+
+        {/* Page */}
+
+        <main className="bg-[#081510]">
+
+          <div className="mx-auto max-w-[1500px] px-8 py-8 xl:px-10">
+
+            {children}
+
+          </div>
+
         </main>
+
       </div>
+
     </div>
   );
 }

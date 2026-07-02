@@ -4,9 +4,18 @@ import {
   Globe,
   Sun,
   UserCircle,
+  LogOut,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
   return (
     <header className="h-20 bg-[#163A2A] border-b border-[#214B3E] px-8 flex items-center justify-between">
       {/* Search */}
@@ -34,7 +43,6 @@ function Navbar() {
 
         <button className="relative text-[#B7E4C7] hover:text-white">
           <Bell size={22} />
-
           <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-red-500"></span>
         </button>
 
@@ -43,11 +51,18 @@ function Navbar() {
 
           <div>
             <h4 className="font-semibold">Preksha</h4>
-            <p className="text-xs text-[#B7E4C7]">
-              Farmer
-            </p>
+            <p className="text-xs text-[#B7E4C7]">Farmer</p>
           </div>
         </div>
+
+        {/* Logout Button */}
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 text-white transition hover:bg-red-700"
+        >
+          <LogOut size={18} />
+          Logout
+        </button>
       </div>
     </header>
   );

@@ -1,33 +1,123 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root{
+  --bg:#07130f;
+  --surface:#0c1f18;
+  --surface-2:#11271f;
+  --card:#142d23;
+  --border:#224537;
+  --primary:#43b36c;
+  --primary-dark:#2d8d53;
+  --text:#ffffff;
+  --muted:#9bc7ad;
 }
 
-html,
-body,
-#root {
-  width: 100%;
-  min-height: 100%;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-body {
-  font-family: Inter, sans-serif;
-  background-color: #081c15;
-  color: #ffffff;
-  overflow-x: hidden;
+html{
+  scroll-behavior:smooth;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+body{
+  font-family:Inter,system-ui,sans-serif;
+  background:
+  radial-gradient(circle at top,#173624 0%,#07130f 55%);
+  color:var(--text);
+  min-height:100vh;
 }
 
-button,
+#root{
+  min-height:100vh;
+}
+
+::-webkit-scrollbar{
+  width:8px;
+}
+
+::-webkit-scrollbar-track{
+  background:#081510;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#2d6a4f;
+  border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background:#40916c;
+}
+
+button{
+  cursor:pointer;
+  transition:.25s;
+}
+
 input,
-textarea,
-select {
-  font: inherit;
+select,
+textarea{
+  font-family:inherit;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  outline:none;
+}
+
+.page-container{
+  max-width:1450px;
+  margin:auto;
+  padding:28px 30px 40px;
+}
+
+.section-title{
+  font-size:34px;
+  font-weight:700;
+  line-height:1;
+}
+
+.section-subtitle{
+  margin-top:8px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.glass{
+  background:rgba(17,39,31,.75);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(79,163,116,.18);
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+}
+
+.shadow-soft{
+  box-shadow:
+  0 10px 30px rgba(0,0,0,.30);
+}
+
+.grid-auto{
+  display:grid;
+  gap:22px;
+}
+
+@media (min-width:768px){
+  .grid-auto{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media (min-width:1280px){
+  .grid-auto{
+    grid-template-columns:repeat(3,1fr);
+  }
 }

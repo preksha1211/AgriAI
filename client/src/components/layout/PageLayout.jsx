@@ -1,24 +1,27 @@
-import MainLayout from "./MainLayout";
+import { motion } from "framer-motion";
 
-function PageLayout({ title, subtitle, children }) {
+function PageLayout({ children }) {
   return (
-    <MainLayout>
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold text-white">
-            {title}
-          </h1>
-
-          {subtitle && (
-            <p className="mt-2 text-[#B7E4C7]">
-              {subtitle}
-            </p>
-          )}
-        </div>
-
+    <motion.main
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35 }}
+      className="min-h-screen bg-transparent"
+    >
+      <div
+        className="
+          mx-auto
+          w-full
+          max-w-[1500px]
+          px-6
+          py-7
+          lg:px-8
+          xl:px-10
+        "
+      >
         {children}
       </div>
-    </MainLayout>
+    </motion.main>
   );
 }
 
